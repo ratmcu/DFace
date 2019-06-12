@@ -510,15 +510,15 @@ face candidates:%d, current batch_size:%d"%(num_boxes, batch_size)
         # cropped_ims_tensors = np.zeros((num_boxes, 3, 24, 24), dtype=np.float32)
         cropped_ims_tensors = []
         for i in range(num_boxes):
-            # try:
-            tmp = np.zeros((tmph[i], tmpw[i], 3), dtype=np.uint8)
-            tmp[dy[i]:edy[i] + 1, dx[i]:edx[i] + 1, :] = im[y[i]:ey[i] + 1, x[i]:ex[i] + 1, :]
-            crop_im = cv2.resize(tmp, (48, 48))
-            crop_im_tensor = image_tools.convert_image_to_tensor(crop_im)
-            # cropped_ims_tensors[i, :, :, :] = crop_im_tensor
-            cropped_ims_tensors.append(crop_im_tensor)
-            # except:
-            #     pass
+            try:
+                tmp = np.zeros((tmph[i], tmpw[i], 3), dtype=np.uint8)
+                tmp[dy[i]:edy[i] + 1, dx[i]:edx[i] + 1, :] = im[y[i]:ey[i] + 1, x[i]:ex[i] + 1, :]
+                crop_im = cv2.resize(tmp, (48, 48))
+                crop_im_tensor = image_tools.convert_image_to_tensor(crop_im)
+                # cropped_ims_tensors[i, :, :, :] = crop_im_tensor
+                cropped_ims_tensors.append(crop_im_tensor)
+            except:
+                pass
         feed_imgs = Variable(torch.stack(cropped_ims_tensors))
 
         if self.rnet_detector.use_cuda:
