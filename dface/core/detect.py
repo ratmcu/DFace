@@ -510,6 +510,7 @@ face candidates:%d, current batch_size:%d"%(num_boxes, batch_size)
         # cropped_ims_tensors = np.zeros((num_boxes, 3, 24, 24), dtype=np.float32)
         cropped_ims_tensors = []
         for i in range(num_boxes):
+            print(f'{i}')
             try:
                 tmp = np.zeros((tmph[i], tmpw[i], 3), dtype=np.uint8)
                 tmp[dy[i]:edy[i] + 1, dx[i]:edx[i] + 1, :] = im[y[i]:ey[i] + 1, x[i]:ex[i] + 1, :]
