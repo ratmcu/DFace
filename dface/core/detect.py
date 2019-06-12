@@ -506,7 +506,7 @@ face candidates:%d, current batch_size:%d"%(num_boxes, batch_size)
         [dy, edy, dx, edx, y, ey, x, ex, tmpw, tmph] = self.pad(dets, w, h)
         num_boxes = dets.shape[0]
 
-
+        print('before loop')
         # cropped_ims_tensors = np.zeros((num_boxes, 3, 24, 24), dtype=np.float32)
         cropped_ims_tensors = []
         for i in range(num_boxes):
