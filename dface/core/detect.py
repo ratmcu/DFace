@@ -399,7 +399,7 @@ face candidates:%d, current batch_size:%d"%(num_boxes, batch_size)
         feed_imgs = Variable(torch.stack(cropped_ims_tensors))
 
         if self.rnet_detector.use_cuda:
-            feed_imgs = feed_imgs.cuda()
+            feed_imgs = feed_imgs.float().cuda()
 
         cls_map, reg = self.rnet_detector(feed_imgs)
 
