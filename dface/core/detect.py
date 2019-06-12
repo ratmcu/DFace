@@ -265,7 +265,7 @@ class MtcnnDetector(object):
 
 
             if self.pnet_detector.use_cuda:
-                feed_imgs = feed_imgs.cuda()
+                feed_imgs = feed_imgs.float().cuda()
 
             cls_map, reg = self.pnet_detector(feed_imgs)
 
