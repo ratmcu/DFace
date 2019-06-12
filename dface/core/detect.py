@@ -520,8 +520,9 @@ face candidates:%d, current batch_size:%d"%(num_boxes, batch_size)
             except:
                 pass
         feed_imgs = Variable(torch.stack(cropped_ims_tensors))
-
+        print('feed_imgs = feed_imgs.cuda()')
         if self.rnet_detector.use_cuda:
+            print('self.rnet_detector.use_cuda')
             feed_imgs = feed_imgs.cuda()
         print('before onet detector')
         cls_map, reg, landmark = self.onet_detector(feed_imgs)
