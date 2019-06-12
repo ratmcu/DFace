@@ -605,22 +605,22 @@ face candidates:%d, current batch_size:%d"%(num_boxes, batch_size)
         t = time.time()
 
         # pnet
-        # if self.pnet_detector:
-        #     boxes, boxes_align = self.detect_pnet(img)
-        #     if boxes_align is None:
-        #         return np.array([]), np.array([])
+        if self.pnet_detector:
+            boxes, boxes_align = self.detect_pnet(img)
+            if boxes_align is None:
+                return np.array([]), np.array([])
 
-        #     t1 = time.time() - t
-        #     t = time.time()
+            t1 = time.time() - t
+            t = time.time()
 
         # rnet
-        # if self.rnet_detector:
-        #     boxes, boxes_align = self.detect_rnet(img, boxes_align)
-        #     if boxes_align is None:
-        #         return np.array([]), np.array([])
+        if self.rnet_detector:
+            boxes, boxes_align = self.detect_rnet(img, boxes_align)
+            if boxes_align is None:
+                return np.array([]), np.array([])
 
-        #     t2 = time.time() - t
-        #     t = time.time()
+            t2 = time.time() - t
+            t = time.time()
 
         # onet
         if self.onet_detector:
